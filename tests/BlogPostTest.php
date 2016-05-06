@@ -46,7 +46,7 @@ class BlogPostTest extends \PHPUnit_Framework_TestCase {
     /**
      * @covers Refaktor\Blog\BlogPost::setTitle
      */
-    public function setCreateSlug() {
+    public function testCreateSlug() {
         //setup
         $blogPost = new BlogPost();
         //act
