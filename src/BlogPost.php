@@ -23,6 +23,11 @@ class BlogPost {
     private $content;
 
     /**
+     * @var BlogAuthor
+     */
+    private $author;
+
+    /**
      * @return string
      */
     public function getSlug() {
@@ -84,6 +89,23 @@ class BlogPost {
     public function setContent($content) {
         $this->content = $content;
 
+        return $this;
+    }
+
+    /**
+     * @return BlogAuthor
+     */
+    public function getAuthor() {
+        return $this->author;
+    }
+
+    /**
+     * @param BlogAuthor $author
+     *
+     * @return BlogPost
+     */
+    public function setAuthor(BlogAuthor $author) {
+        $this->author = $author;
         return $this;
     }
 }

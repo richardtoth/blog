@@ -54,4 +54,18 @@ class BlogPostTest extends \PHPUnit_Framework_TestCase {
         //assert
         $this->assertEquals('this-is-my-test-blog-post', $blogPost->getSlug());
     }
+
+    /**
+     * @covers Refaktor\Blog\BlogPost::setAuthor
+     * @covers Refaktor\Blog\BlogPost::getAuthor
+     */
+    public function testAuthor() {
+        //setup
+        $blogPost = new BlogPost();
+        $author   = new BlogAuthor();
+        //act
+        //assert
+        $this->assertEquals($blogPost, $blogPost->setAuthor($author));
+        $this->assertEquals($author,   $blogPost->getAuthor());
+    }
 }
