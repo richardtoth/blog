@@ -46,7 +46,7 @@ class BlogPost {
     }
 
     /**
-     * Set the title of the blogpost.
+     * Returns the title of the blogpost.
      *
      * @return string
      */
