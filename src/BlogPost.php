@@ -95,7 +95,7 @@ class BlogPost {
     /**
      * @param BlogAuthor $author
      *
-     * @return BlogPost
+     * @return $this
      */
     public function setAuthor(BlogAuthor $author) {
         $this->author = $author;
