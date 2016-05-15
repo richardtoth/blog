@@ -68,4 +68,18 @@ class BlogPostTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals($blogPost, $blogPost->setAuthor($author));
         $this->assertEquals($author,   $blogPost->getAuthor());
     }
+    
+    /**
+     * @covers Refaktor\Blog\BlogPost::setPublishedAt
+     * @covers Refaktor\Blog\BlogPost::getPublishedAt
+     */    
+    public function testPublishDate() {
+        //setup
+        $blogPost = new BlogPost();
+        $publishDate = new \DateTime();
+        //act
+        //assert
+        $this->assertEquals($blogPost, $blogPost->setPublishedAt($publishDate));
+        $this->assertEquals($publishDate, $blogPost->getPublishedAt());
+    }
 }

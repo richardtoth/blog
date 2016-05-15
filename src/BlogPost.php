@@ -28,6 +28,11 @@ class BlogPost {
     private $author;
 
     /**
+     * @var \DateTime
+     */
+    private $publishedAt;
+
+    /**
      * @return string
      */
     public function getSlug() {
@@ -99,6 +104,24 @@ class BlogPost {
      */
     public function setAuthor(BlogAuthor $author) {
         $this->author = $author;
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getPublishedAt() {
+        return $this->publishedAt;
+    }
+
+    /**
+     * @param \DateTime $publishedAt
+     *
+     * @return $this
+     */
+    public function setPublishedAt($publishedAt) {
+        $this->publishedAt = $publishedAt;
+
         return $this;
     }
 }
