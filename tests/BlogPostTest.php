@@ -46,13 +46,13 @@ class BlogPostTest extends \PHPUnit_Framework_TestCase {
     /**
      * @covers Refaktor\Blog\BlogPost::setTitle
      */
-    public function testCreateSlug() {
+    public function testNoAutoSlug() {
         //setup
         $blogPost = new BlogPost();
         //act
         $blogPost->setTitle('This is my test blog post');
         //assert
-        $this->assertEquals('this-is-my-test-blog-post', $blogPost->getSlug());
+        $this->assertEquals('', $blogPost->getSlug());
     }
 
     /**

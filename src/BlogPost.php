@@ -63,14 +63,7 @@ class BlogPost {
      */
     public function setTitle($title) {
         $this->title = $title;
-
-        if (!$this->getSlug()) {
-            $slug = \preg_replace('/[^a-zA-Z0-9\/_|+ -]/', '', $title);
-            $slug = \strtolower(\trim($slug, '-'));
-            $slug = \preg_replace('/[\/_|+ -]+/', '-', $slug);
-            $this->setSlug($slug);
-        }
-
+        
         return $this;
     }
 
