@@ -5,7 +5,7 @@ namespace Refaktor\Blog;
 /**
  * A person authoring a BlogPost
  */
-class BlogAuthor {
+class BlogAuthorEntity {
     /**
      * @var string
      */

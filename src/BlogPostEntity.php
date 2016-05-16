@@ -5,7 +5,7 @@ namespace Refaktor\Blog;
 /**
  * Blog post entity
  */
-class BlogPost {
+class BlogPostEntity {
 
     /**
      * @var string
@@ -23,7 +23,7 @@ class BlogPost {
     private $content;
 
     /**
-     * @var BlogAuthor
+     * @var BlogAuthorEntity
      */
     private $author;
 
@@ -91,18 +91,18 @@ class BlogPost {
     }
 
     /**
-     * @return BlogAuthor
+     * @return BlogAuthorEntity
      */
     public function getAuthor() {
         return $this->author;
     }
 
     /**
-     * @param BlogAuthor $author
+     * @param BlogAuthorEntity $author
      *
      * @return $this
      */
-    public function setAuthor(BlogAuthor $author) {
+    public function setAuthor(BlogAuthorEntity $author) {
         $this->author = $author;
         return $this;
     }
