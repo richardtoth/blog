@@ -4,7 +4,7 @@ namespace Refaktor\Blog;
 
 /**
  * This object represents a BlogPost for interaction with a boundary. It is closely connected to the BlogPost entity.
- * 
+ *
  * @see BlogPost
  */
 class BlogPostResponseObject {

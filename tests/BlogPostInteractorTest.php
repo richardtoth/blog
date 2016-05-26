@@ -2,6 +2,7 @@
 
 
 namespace Refaktor\Blog;
+use Refaktor\Blog\EntityGateway\InMemory\InMemoryBlogPostGateway;
 
 /**
  * @covers Refaktor\Blog\BlogPostInteractor

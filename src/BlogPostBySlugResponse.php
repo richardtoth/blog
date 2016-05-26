@@ -4,7 +4,7 @@ namespace Refaktor\Blog;
 
 /**
  * This class represents the response to a fetch request to an interactor.
- * 
+ *
  * @see BlogPostFetchingBoundaryInterface
  */
 class BlogPostBySlugResponse {

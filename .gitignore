@@ -1,4 +1,7 @@
 build
+config/local.php
+htdocs/.sass-cache
+htdocs/node_modules
 
 # Created by .ignore support plugin (hsz.mobi)
 ### Composer template

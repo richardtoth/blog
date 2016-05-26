@@ -2,41 +2,28 @@
 
 namespace Refaktor\Blog;
 
-class BlogPostInteractor implements BlogPostLatestPostsBoundaryInterface, BlogPostBySlugBoundaryInterface {
+class BlogPostInteractor implements BlogPostLatestPostsBoundary, BlogPostBySlugBoundary {
 
     /**
-     * @var BlogPostBySlugGatewayInterface
+     * @var BlogPostBySlugGateway
      */
     private $bySlugGateway;
 
     /**
-     * @var BlogPostLatestPostsGatewayInterface
+     * @var BlogPostLatestPostsGateway
      */
     private $latestPostsGateway;
 
     /**
-     * @param BlogPostBySlugGatewayInterface      $bySlugGateway
-     * @param BlogPostLatestPostsGatewayInterface $latestPostsGateway
+     * @param BlogPostBySlugGateway      $bySlugGateway
+     * @param BlogPostLatestPostsGateway $latestPostsGateway
      */
     public function __construct(
-        BlogPostBySlugGatewayInterface $bySlugGateway,
-        BlogPostLatestPostsGatewayInterface $latestPostsGateway
+        BlogPostBySlugGateway $bySlugGateway,
+        BlogPostLatestPostsGateway $latestPostsGateway
     ) {
         $this->bySlugGateway      = $bySlugGateway;
         $this->latestPostsGateway = $latestPostsGateway;
-    }
-
-    protected function translateEntityToResponse(BlogPostEntity $entity) {
-        $responsePost = new BlogPostResponseObject();
-        $responseAuthor = new BlogAuthorResponseObject();
-        $responseAuthor->setName($entity->getAuthor()->getName());
-        $responsePost
-            ->setSlug($entity->getSlug())
-            ->setTitle($entity->getTitle())
-            ->setPublishedAt(clone $entity->getPublishedAt())
-            ->setContent($entity->getContent())
-            ->setAuthor($responseAuthor);
-        return $responsePost;
     }
 
     /**
@@ -52,6 +39,19 @@ class BlogPostInteractor implements BlogPostLatestPostsBoundaryInterface, BlogPo
         }
 
 
+    }
+
+    protected function translateEntityToResponse(BlogPostEntity $entity) {
+        $responsePost   = new BlogPostResponseObject();
+        $responseAuthor = new BlogAuthorResponseObject();
+        $responseAuthor->setName($entity->getAuthor()->getName());
+        $responsePost
+            ->setSlug($entity->getSlug())
+            ->setTitle($entity->getTitle())
+            ->setPublishedAt(clone $entity->getPublishedAt())
+            ->setContent($entity->getContent())
+            ->setAuthor($responseAuthor);
+        return $responsePost;
     }
 
     /**
