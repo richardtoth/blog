@@ -22,8 +22,25 @@ class GuzzleHTTPAdapter implements HTTPAdapter {
      * @param array $files
      */
     public function __construct(array $server, array $get, array $post, array $cookie, array $files) {
-        $method  = isset($server['REQUEST_METHOD']) ? $server['REQUEST_METHOD'] : 'GET';
-        $headers = function_exists('getallheaders') ? getallheaders() : [];
+        $method  = $this->getMethod($server);
+        $headers = [];
+        $uri = $this->getUri($server);
+        //todo find a method to abstract the input stream without having to expose guzzle for POST requests.
+        $body          = new LazyOpenStream('php://input', 'r+');
+        $protocol      = $this->getProtocol($server);
+        $serverRequest = new ServerRequest($method, $uri, $headers, $body, $protocol, $server);
+        $this->request = $serverRequest
+            ->withCookieParams($cookie)
+            ->withQueryParams($get)
+            ->withParsedBody($post);
+        $this->response = new Response();
+    }
+
+    private function getMethod($server) {
+        return isset($server['REQUEST_METHOD']) ? $server['REQUEST_METHOD'] : 'GET';
+    }
+
+    private function getUri($server) {
         $uri     = new Uri('');
         if (isset($server['HTTPS'])) {
             $uri = $uri->withScheme($server['HTTPS'] == 'on' ? 'https' : 'http');
@@ -45,16 +62,12 @@ class GuzzleHTTPAdapter implements HTTPAdapter {
         if (isset($server['QUERY_STRING'])) {
             $uri = $uri->withQuery($server['QUERY_STRING']);
         }
-        //todo find a method to abstract the input stream without having to expose guzzle for POST requests.
-        $body          = new LazyOpenStream('php://input', 'r+');
-        $protocol      =
-            isset($server['SERVER_PROTOCOL']) ? str_replace('HTTP/', '', $server['SERVER_PROTOCOL']) : '1.1';
-        $serverRequest = new ServerRequest($method, $uri, $headers, $body, $protocol, $server);
-        $this->request = $serverRequest
-            ->withCookieParams($cookie)
-            ->withQueryParams($get)
-            ->withParsedBody($post);
-        $this->response = new Response();
+
+        return $uri;
+    }
+
+    private function getProtocol($server) {
+        return isset($server['SERVER_PROTOCOL']) ? str_replace('HTTP/', '', $server['SERVER_PROTOCOL']) : '1.1';
     }
 
     /**

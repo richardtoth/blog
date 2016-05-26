@@ -4,7 +4,6 @@ namespace Refaktor\Blog\DeliveryMechanism\Web\Routing;
 
 use FastRoute\Dispatcher;
 use FastRoute\RouteCollector;
-use function FastRoute\simpleDispatcher;
 use Psr\Http\Message\ServerRequestInterface;
 
 class FastRouteRouter implements Router {
@@ -18,12 +17,12 @@ class FastRouteRouter implements Router {
     private $errorHandlers = [];
 
     public function __construct($routes, $errorHandlers) {
-        $this->dispatcher    = simpleDispatcher(function (RouteCollector $r) use ($routes) {
+        $this->dispatcher    = \FastRoute\simpleDispatcher(function (RouteCollector $routeCollector) use ($routes) {
             foreach ($routes as $route) {
                 $method   = $route[0];
                 $uri      = $route[1];
                 $callback = array($route[2], $route[3]);
-                $r->addRoute($method, $uri, $callback);
+                $routeCollector->addRoute($method, $uri, $callback);
             }
         });
         $this->errorHandlers = $errorHandlers;

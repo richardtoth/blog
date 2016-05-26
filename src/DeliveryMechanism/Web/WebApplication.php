@@ -18,7 +18,7 @@ class WebApplication extends Application {
          * @var ServerRequestInterface $request
          * @var HTTPAdapter $httpAdapter
          */
-        list($request, $httpAdapter) = $this->initRequest($server, $get, $post, $cookie, $files, $this->getDIC());
+        list(, $httpAdapter) = $this->initRequest($server, $get, $post, $cookie, $files, $this->getDIC());
 
         list($controllerResponse, $controllerClass, $controllerMethod) =
             $this->processRoutingToController($this->getDIC());
