@@ -11,4 +11,9 @@ interface Router {
      * @return RoutingResponse
      */
     public function route(ServerRequestInterface $request);
+
+    /**
+     * @return RoutingResponse
+     */
+    public function getNotFoundRoute();
 }

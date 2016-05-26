@@ -1,9 +1,11 @@
 <?php
 
-namespace DeliveryMechanism\Web\Controller;
+namespace Refaktor\Blog\DeliveryMechanism\Web\Controller;
 
 use Refaktor\Blog\BlogPostBySlugBoundary;
+use Refaktor\Blog\BlogPostBySlugBoundaryException;
 use Refaktor\Blog\BlogPostLatestPostsBoundary;
+use Refaktor\Blog\DeliveryMechanism\Web\NotFoundException;
 
 class BlogController {
     public function indexAction(BlogPostLatestPostsBoundary $latestPostsBoundary) {
@@ -13,8 +15,12 @@ class BlogController {
     }
 
     public function postAction($slug, BlogPostBySlugBoundary $bySlugBoundary) {
-        return [
-            'blogPost' => $bySlugBoundary->getBlogPostBySlug($slug)->getBlogPost(),
-        ];
+        try {
+            return [
+                'blogPost' => $bySlugBoundary->getBlogPostBySlug($slug)->getBlogPost(),
+            ];
+        } catch (BlogPostBySlugBoundaryException $e) {
+            throw new NotFoundException($e->getMessage(), $e->getCode(), $e);
+        }
     }
 }

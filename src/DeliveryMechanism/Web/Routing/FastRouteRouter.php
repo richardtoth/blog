@@ -66,4 +66,12 @@ class FastRouteRouter implements Router {
 
         return new RoutingResponse($statusCode, $controller, $action, $vars);
     }
+
+    public function getNotFoundRoute() {
+        $statusCode = 404;
+        $controller = $this->errorHandlers[404][0];
+        $action     = $this->errorHandlers[404][1];
+
+        return new RoutingResponse($statusCode, $controller, $action, []);
+    }
 }

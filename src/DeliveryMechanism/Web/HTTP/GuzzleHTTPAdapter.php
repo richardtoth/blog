@@ -1,8 +1,9 @@
 <?php
 
-namespace Refaktor\Blog\DeliveryMechanism\HTTP;
+namespace Refaktor\Blog\DeliveryMechanism\Web\HTTP;
 
 use GuzzleHttp\Psr7\LazyOpenStream;
+use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\ServerRequest;
 use GuzzleHttp\Psr7\Uri;
 use Psr\Http\Message\ResponseInterface;
@@ -53,6 +54,7 @@ class GuzzleHTTPAdapter implements HTTPAdapter {
             ->withCookieParams($cookie)
             ->withQueryParams($get)
             ->withParsedBody($post);
+        $this->response = new Response();
     }
 
     /**

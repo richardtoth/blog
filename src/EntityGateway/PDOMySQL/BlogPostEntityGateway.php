@@ -7,6 +7,7 @@ use Refaktor\Blog\BlogPostBySlugGateway;
 use Refaktor\Blog\BlogPostEntity;
 use Refaktor\Blog\BlogPostLatestPostsGateway;
 use Refaktor\Blog\EntityGateway\PDOMySQL\Migrations\CreateBlogPostsTable;
+use Refaktor\Blog\EntityGateway\PDOMySQL\Migrations\InsertSamplePosts;
 use Refaktor\Blog\EntityNotFoundException;
 
 class BlogPostEntityGateway extends EntityGateway implements BlogPostBySlugGateway, BlogPostLatestPostsGateway {
@@ -16,6 +17,7 @@ class BlogPostEntityGateway extends EntityGateway implements BlogPostBySlugGatew
     protected function getMigrationVersions() {
         return [
             CreateBlogPostsTable::class,
+            InsertSamplePosts::class
         ];
     }
 

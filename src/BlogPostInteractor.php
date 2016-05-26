@@ -37,8 +37,6 @@ class BlogPostInteractor implements BlogPostLatestPostsBoundary, BlogPostBySlugB
         } catch (EntityNotFoundException $e) {
             throw new BlogPostNotFoundBoundaryException('Blog post not found by slug: \'' . $slug . '\'', 0, $e);
         }
-
-
     }
 
     protected function translateEntityToResponse(BlogPostEntity $entity) {

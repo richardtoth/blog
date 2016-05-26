@@ -1,11 +1,14 @@
 <?php
 
-namespace Refaktor\Blog\DeliveryMechanism\HTTP;
+namespace Refaktor\Blog\DeliveryMechanism\Web\HTTP;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\StreamInterface;
 
+/**
+ * This interface provides standardized access to the PSR-7 nightmare.
+ */
 interface HTTPAdapter {
     /**
      * @param array $server
